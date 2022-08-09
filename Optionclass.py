@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 from random import choice as cs
 class game :
     __choices = ['Rock','Paper','Scissors']
