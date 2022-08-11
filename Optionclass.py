@@ -3,37 +3,41 @@ from random import choice as cs
 class game :
     __choices = ['Rock','Paper','Scissors']
 
+    def __init__(self) -> None:
+        self.__SelfChoice = cs(self.__choices)
+
     
-    __SelfChoice = cs(__choices)
+    def Gamechoice(self):
+        return self.__SelfChoice
 
     def UserChoice(self,Userch):
         self.__Userch = Userch
         
 
-    def WhoWin(self):
-        if self.__SelfChoice == "Rock":
-            if  self.__Userch=="Rock":
+    def WhoWin(Gamechoice,Userchoice):
+        if Gamechoice == "Rock":
+            if  Userchoice=="Rock":
                 return "Draw"
-            elif self.__Userch == "Paper":
-                return "User win"
+            elif Userchoice == "Paper":
+                return "User"
             else :
-                return "Computer win"
+                return "Game"
 
-        if self.__SelfChoice == "Paper" : 
-            if self.__Userch=="Rock":
-                return "Computer win"
-            elif self.__Userch == "Paper":
+        if Gamechoice == "Paper" : 
+            if Userchoice=="Rock":
+                return "Game"
+            elif Userchoice == "Paper":
                 return "Draw"
             else :
-                return "User win"
+                return "User"
 
-        if self.__SelfChoice == "Scissors" : 
-            if self.__Userch=="Rock":
-                return "User win" 
-            elif self.__Userch == "Paper":
-                return "Computer win"
+        if Gamechoice == "Scissors" : 
+            if Userchoice=="Rock":
+                return "User" 
+            elif Userchoice == "Paper":
+                return "Game"
             else :
-                return "draw win"
+                return "Draw"
 
     
 
