@@ -1,7 +1,7 @@
 
 from random import choice as cs
 class game :
-    __choices = ['Rock','Paper','Scissors']
+    __choices = ['Rock','Paper','Scissor']
 
     def __init__(self) -> None:
         self.__SelfChoice = cs(self.__choices)
@@ -10,8 +10,7 @@ class game :
     def Gamechoice(self):
         return self.__SelfChoice
 
-    def UserChoice(self,Userch):
-        self.__Userch = Userch
+    
         
 
     def WhoWin(Gamechoice,Userchoice):
@@ -19,23 +18,23 @@ class game :
             if  Userchoice=="Rock":
                 return "Draw"
             elif Userchoice == "Paper":
-                return "User"
+                return "You"
             else :
-                return "Game"
+                return "Computer"
 
         if Gamechoice == "Paper" : 
             if Userchoice=="Rock":
-                return "Game"
+                return "Computer"
             elif Userchoice == "Paper":
                 return "Draw"
             else :
-                return "User"
+                return "You"
 
-        if Gamechoice == "Scissors" : 
+        if Gamechoice == "Scissor" : 
             if Userchoice=="Rock":
-                return "User" 
+                return "You" 
             elif Userchoice == "Paper":
-                return "Game"
+                return "Computer"
             else :
                 return "Draw"
 

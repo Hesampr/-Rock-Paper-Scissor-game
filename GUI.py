@@ -1,9 +1,8 @@
 #tkinter is a library for creating graphical user interface
 import tkinter as tk
-
 import tkinter.messagebox as mb
-from turtle import pd 
 
+#OptionClass is a class I made for game rules
 import Optionclass 
 
 
@@ -18,56 +17,76 @@ Root.config(bg="#29465B")
 
 
 #Backgrounds
-Rockbg = tk.PhotoImage(file = 'Rock.png')
-Paperbg = tk.PhotoImage(file = 'Paper.png')
-Scissorsbg = tk.PhotoImage(file = 'Scissors.png')
-Playbg = tk.PhotoImage(file  = "Play.png")
+
+Rockbg = tk.PhotoImage(file = './Rock.png')
+Paperbg = tk.PhotoImage(file = './Paper.png')
+Scissorbg = tk.PhotoImage(file = './Scissor.png')
+Playbg = tk.PhotoImage(file  = "./Play.png")
+
+
+
+#Definition
+
+GameDesicion = tk.StringVar()
+USerDesicion = tk.StringVar()
+Winner= tk.StringVar()
 
 
 
 #Functions 
 
-GameDesicion = tk.StringVar()
-USerDesicion = tk.StringVar()
-Winner= tk.StringVar()
-Winner.set("please choose")
-# defaultText=tk.StringVar()
-
 def Playfunc():
     try:
-        Winner.set("please choose")
-        mb.showinfo("choice","Computer decided , please choose ")
         obj1 = Optionclass.game()
         temp = obj1.Gamechoice()
         GameDesicion.set(temp)
+        
+        mb.showinfo("Choice","Computer decided ,Please select")
                 
-
     except:
         pass
 
+
+
+
 def Rockfunc():
-    USerDesicion.set("Rock")
-    Winnerfunc()
+    USerDesicion.set("Rock") 
+    temp=GameDesicion.get()
+    if temp!="":     
+        Winnerfunc()
+    else:
+        mb.showerror("Decision error","The computer didn't decide ,Please click on the play icon ")
 
 def Paperfunc():
     USerDesicion.set("Paper")
-    Winnerfunc()
+    temp=GameDesicion.get()
+    if temp!="":     
+        Winnerfunc()
+    else:
+        mb.showerror("Decision error","The computer didn't decide ,Please click on the play icon ")
 
 def Scissorsfunc():
     USerDesicion.set("Scissors")
-    Winnerfunc()
+    temp=GameDesicion.get()
+    if temp!="":     
+        Winnerfunc()
+    else:
+        mb.showerror("Decision error","The computer didn't decide ,Please click on the play icon ")
 
 def Winnerfunc():
     temp1 = GameDesicion.get()
     temp2 = USerDesicion.get()
     winnerstr =Optionclass.game.WhoWin(temp1,temp2)
-    Reswinner = f"Computer: {temp1}"+ f" and you: {temp2}"
+    Reswinner = f"Computer: {temp1}"+ f" You: {temp2}"
     if winnerstr!="Draw":
-        Reswinner+= f"\n{winnerstr} winned"
+        Reswinner+= f"\n{winnerstr} won"
     else:
-        Reswinner+=f"\n drawed"
-    
+        Reswinner+=f"\n Draw"
+
     Winner.set(Reswinner)
+    Root.after(4000,Root.destroy)
+
+
 
 
 
@@ -79,7 +98,7 @@ RockButton.place(x=60,y=220)
 PaperButton = tk.Button(Root,image=Paperbg, height=70,width=70,command=Paperfunc)
 PaperButton.place(x=160,y=220)
 
-ScissorsButton = tk.Button(Root,image = Scissorsbg , height=70,width=70 ,command=Scissorsfunc)
+ScissorsButton = tk.Button(Root,image = Scissorbg , height=70,width=70 ,command=Scissorsfunc)
 ScissorsButton.place(x=260,y=220)
 
 PlayButton= tk.Button(Root,image=Playbg, height=70,width=100 , command=lambda :Playfunc() )
@@ -89,19 +108,14 @@ PlayButton.place(x=145,y=100)
 
 #Labels
 
-ResLabel = tk.Label(Root,width=31,height=2,bg="#E9AB17",textvariable=Winner,font=("Arial",13))
+ResLabel = tk.Label(Root,width=31,height=2,bg="#E9AB17",fg="#8B0000",textvariable=Winner,font=("Arial",13))
 ResLabel.place(x=60,y=340)
 
 
 
 
-mb.showinfo("click","click on play icon")
 
 
-
-
-
-
-
+mb.showinfo("Click","Click on the play icon")
 
 Root.mainloop()
